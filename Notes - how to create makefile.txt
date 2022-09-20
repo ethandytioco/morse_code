@@ -1,0 +1,59 @@
+Makefile notes
+cite:
+part 1 - https://www.youtube.com/watch?v=6Gw1rNyTJWA
+part 2 - https://www.youtube.com/watch?v=6Gw1rNyTJWA
+
+- AUTOMATED and OPTIMIZED build process for C++ operations
+- recompiles only the files that are updated, instead of compiling EVERYTHING
+- the actual file is a description on how to do this compilation process
+- to compile, type "make" on the terminal
+
+# <- pound key for comments
+
+======== .o file ========
+- you can make an intermediate step of making object code
+- eg: file1.cpp -> file1.o, and file2.cpp -> file2.o
+
+inefficient: file1.cpp file2.cpp
+g++ file1.cpp file2.cpp
+a.exe
+
+Makefile file checks the dates of the files, and compiles the updated portions
+
+
+======== how to build the file ========
+name: makefile.mak
+
+let's say we have the files file1.cpp and file2.cpp in our project.
+
+<name of file to generate, or the process to execute>: <place names of files that file1.o is dependent on here. if these files change, then file1.o regenerates>
+	<you MUST tab the next line(s) to say HOW file1.o is generated>
+	<g++ compiles to generate an executable file>
+	<rm removes the following files listed>
+	
+	<-c flag means "compile only", which you need to generate the .o file>
+	<-o flag means "output", which lets us name the output of what we compile (in the youtube example, -o <output_file_name> is written after the g++ <file names>)>
+
+
+so, how it looks:
+
+project: file1.o file2.o
+	g++ file1.o file2.o -o application.exe
+
+file1.o: file1.cpp
+	g++ -c file1.cpp
+
+file2.o: file2.cpp
+	g++ -c file2.cpp
+	
+clean:
+	rm *.o project
+
+
+
+
+
+
+
+
+
