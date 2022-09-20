@@ -7,10 +7,13 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+
+#include <vector>	// needed for getAlphanumeric()
+#include <sstream>	// needed for getAlphanumeric()
 #include "morse.h"
 using namespace std;
 
-const unordered_map<string, string> Morse::translate = {
+const unordered_map<string, string> Morse::toMorse = {
 	{"a", ".-"},
 	{"b","-..."},
 	{"c","-.-."},
@@ -37,6 +40,7 @@ const unordered_map<string, string> Morse::translate = {
 	{"x","-..-"},
 	{"y","-.--"},
 	{"z","--.."},
+	
 	{"0","-----"},
 	{"1",".----"},
 	{"2","..---"},
@@ -47,6 +51,13 @@ const unordered_map<string, string> Morse::translate = {
 	{"7","--..."},
 	{"8","---.."},
 	{"9","----."},
+	
+	{" ", "/"},
+	{".", "//"},
+	{"?", "..--.."}
+};
+
+const unordered_map<string, string> Morse::toAlphanumeric = {	
 	{".-","a"},
 	{"-...","b"},
 	{"-.-.","c"},
@@ -73,6 +84,7 @@ const unordered_map<string, string> Morse::translate = {
 	{"-..-","x"},
 	{"-.--","y"},
 	{"--..","z"},
+	
 	{"-----","0"},
 	{".----","1"},
 	{"..---","2"},
@@ -82,16 +94,50 @@ const unordered_map<string, string> Morse::translate = {
 	{"-....","6"},
 	{"--...","7"},
 	{"---..","8"},
-	{"----.","9"}
+	{"----.","9"},
+	
+	{"/", " "},
+	{"//", "."},
+	{"..--..", "?"},
+	{" ", ""}		// morse specific: ignore spaces by translating them to an empty string
 };
 
 Morse::Morse(){}
 
 void Morse::printMap(){
-	for (auto i = translate.begin(); i != translate.end(); i++)
-			cout << i->first << "\t-->\t" << i->second << '\n';
+	cout << "\nunordered_map<string, string> toMorse:\n";
+	for (auto i = toMorse.begin(); i != toMorse.end(); i++)
+		cout << i->first << "\t-->\t" << i->second << '\n';
+	
+	cout << "\nunordered_map<string, string> toAlphanumeric:\n";
+	for (auto i = toAlphanumeric.begin(); i != toAlphanumeric.end(); i++)
+		cout << i->first << "\t-->\t" << i->second << '\n';
 }
 
-string Morse::getMorse(string input){
-	return "testing string Morse::getMorse(string input).\nInput:\t" + input;
+string Morse::getMorse(string input /*alphanumeric*/){
+	string output = "";
+	for (int i = 0; i < input.size(); i++){
+		output += toMorse.at(string(1, input[i])) + " ";
+	}
+	
+	return output;
+}
+
+string Morse::getAlphanumeric(string input /*morse*/){
+	string output = "";
+	
+	// instead of parsing through letter-by-letter, we have to parse through by token (word)
+	vector<string> letters;
+	string buffer;
+	stringstream sStream(input);
+	while (getline(sStream, buffer, ' ' /*delimeter*/)){
+		letters.push_back(toAlphanumeric.at(buffer));
+	}
+	
+	// now that we're done parsing through the Morse letters and converting them to alphanumeric,
+	// build the output string
+	for (int i = 0; i < letters.size(); i++)
+		output += letters.at(i);
+	
+	return output;
 }
