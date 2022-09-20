@@ -29,3 +29,8 @@ _g++ morse.o main.o -o morse_
 
 ## How to run morse.exe
 Instead of double clicking on morse.exe, open cmd, and enter: **morse.exe**
+
+
+
+
+Formatting thanks to the [markdown cheat sheet](https://markdown.land/markdown-cheat-sheet)
