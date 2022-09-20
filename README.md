@@ -9,15 +9,16 @@ A {name}.exe file is created as a result.
 
 
 ---- TO BUILD USING MAKEFILE ----
-
 If not already, PowerShell (run as system admin), enter: choco install make
-This will set you up with GNU Make, which will let you use a command to build.
+	This will set you up with GNU Make, which will let you use a command to build.
 
 Then, open cmd to the project folder.
 
 Enter: make
+	There might be some output stuff like:
+	g++ morse.o main.o -o morse
 
-There might be some output stuff like:
-g++ morse.o main.o -o morse
 
-Still in cmd, enter: morse.exe
+
+---- TO RUN MORSE.EXE ----
+Instead of double clicking on morse.exe, open cmd, and enter: morse.exe
