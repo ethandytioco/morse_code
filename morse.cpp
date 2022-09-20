@@ -115,8 +115,14 @@ void Morse::printMap(){
 }
 
 string Morse::getMorse(string input /*alphanumeric*/){
-	string output = "";
+	// start the morse message with a slash
+	string output = "/";
+	
 	for (int i = 0; i < input.size(); i++){
+		// first convert to lowercase
+		if (isupper(input[i]))
+			input[i] = tolower(input[i]);
+		
 		output += toMorse.at(string(1, input[i])) + " ";
 	}
 	

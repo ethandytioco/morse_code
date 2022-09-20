@@ -20,6 +20,6 @@ Enter: make
 
 
 
----- TO RUN THIS PROGRAM ----
-Still in cmd, enter: morse.exe
-	You may have issues if you just double-click on this file, so it's best to open it in cmd
+
+---- TO RUN MORSE.EXE ----
+Instead of double clicking on morse.exe, open cmd, and enter: morse.exe
