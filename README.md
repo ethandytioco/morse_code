@@ -12,7 +12,7 @@ A {name}.exe file is created as a result.
 ## How to compile using makefile
 If not already, PowerShell (run as system admin), enter: choco install make
 
-	_This will set you up with GNU Make, which will let you use a command to build._
+_This will set you up with GNU Make, which will let you use a command to build._
 
 
 Then, open cmd to the project folder.
@@ -20,9 +20,9 @@ Then, open cmd to the project folder.
 
 Enter: **make**
 
-	_There might be some output stuff like:_
-	
-	_g++ morse.o main.o -o morse_
+_There might be some output stuff like:_
+
+_g++ morse.o main.o -o morse_
 
 
 
